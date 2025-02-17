@@ -1,7 +1,7 @@
 import { PBKDF2_SALT_LENGTH, AES_IV_LENGTH } from './constants';
 import { deriveKey, encryptData, decryptData } from './utils';
 
-export default class WCipher {
+export default class Cipher {
 
   /**
    * Encrypt plain data by specified password.

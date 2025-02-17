@@ -1,5 +1,8 @@
-import WCipher from "./cipher";
+import Cipher from "./cipher";
 
-// Export functions and constants from utils
+// Export constants
 export * from "./constants";
+
+// Export cipher class with name WCipher
+const WCipher = Cipher;
 export default WCipher;

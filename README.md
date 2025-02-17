@@ -16,15 +16,33 @@ The combined encrypted content contains:
 ## Example 1: Encryption
 ```javascript
 // Import library
-import Cipher from "wcipher";
+import WCipher from "wcipher";
 
 // Convert plain text to byte array
 const plainTextData = "Plain text data...";
 const plainTextBytes = new TextEncoder().encode(plainTextData);
 
 // Encrypt data
-const encryptedData = await Cipher.encrypt(
+const encryptedData = await WCipher.encrypt(
   "A_SUper-Strong!P@ssw0rd", plainTextBytes);
+```
+
+## Example 2: Decryption
+```javascript
+// Import library
+import WCipher from "wcipher";
+
+// Convert plain text to byte array
+const encryptedData = /* Prepare the encrypted data in Uint8Array */;
+
+// Decrypt data
+const originalData = await WCipher.decrypt(
+  "A_SUper-Strong!P@ssw0rd", encryptedData);
+
+// Optional: If the original data is text,
+// convert the data back to text by using TextDecoder.
+const plainTextData = new TextDecoder().decode(originalData);
+console.log("Original text: " + plainTextData);
 ```
 
 ## License
