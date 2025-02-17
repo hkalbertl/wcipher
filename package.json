@@ -1,0 +1,23 @@
+{
+  "name": "wcipher",
+  "version": "0.0.2",
+  "description": "WCipher is a TypeScript library that leverages the native Web Crypto API for robust and secure encryption and decryption. Designed with ease of use in mind, it offers seamless integration into your applications while ensuring top-notch security.",
+  "type": "module",
+  "author": "Albert L <hkalbertl@users.noreply.github.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "vitest",
+    "build": "tsup"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.6",
+    "typescript": "~5.7.2",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  }
+}
