@@ -14,20 +14,16 @@ The combined encrypted content contains:
 * Variable length of encrypted data + AES Auth Tags
 
 ## Installation
-You can install web-pass-cipher via NPM or Yarn:
+You can install WCipher via NPM or Yarn:
 
-### Using NPM
-```
+```sh
+# Using NPM
 npm install wcipher
-```
 
-### Using Yarn
-```
+# Using Yarn
 yarn add install wcipher
-```
 
-### Using PNPM
-```
+# Using PNPM
 pnpm add wcipher
 ```
 

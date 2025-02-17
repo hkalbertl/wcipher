@@ -1,6 +1,9 @@
 import { PBKDF2_SALT_LENGTH, AES_IV_LENGTH } from './constants';
 import { deriveKey, encryptData, decryptData } from './utils';
 
+/**
+ * The Cipher class for encrypt and decrypt data.
+ */
 export default class Cipher {
 
   /**
@@ -10,6 +13,7 @@ export default class Cipher {
    * @returns Combined encrypted data, which is combined key salt, data iv and encrypted plain data.
    */
   static async encrypt(password: string, plainData: Uint8Array): Promise<Uint8Array> {
+    // Validate input
     if (!password) {
       throw new Error('Password is mandatory!');
     }
@@ -17,6 +21,7 @@ export default class Cipher {
       throw new Error('No data to encrypt!');
     }
 
+    // Derive encryption key and encrypt data
     const keySalt = crypto.getRandomValues(new Uint8Array(PBKDF2_SALT_LENGTH));
     const cryptoKey = await deriveKey(password, keySalt);
     return await encryptData(cryptoKey, keySalt, plainData);
@@ -29,6 +34,7 @@ export default class Cipher {
    * @returns The decrypted plain data.
    */
   static async decrypt(password: string, encryptedData: Uint8Array): Promise<Uint8Array> {
+    // Validate input
     if (!password) {
       throw new Error('Password is mandatory!');
     }
@@ -40,11 +46,15 @@ export default class Cipher {
       throw new Error('Corrupted encrypted data!');
     }
 
+    // Extract key salt and derive encryption key
     const keySalt = encryptedData.slice(0, PBKDF2_SALT_LENGTH);
     const cryptoKey = await deriveKey(password, keySalt);
 
+    // Extract IV for decryption
     const iv = encryptedData.slice(PBKDF2_SALT_LENGTH, headerSize);
     const encryptedContent = encryptedData.slice(headerSize);
+
+    // Return decrypted data
     return await decryptData(cryptoKey, iv, encryptedContent);
   }
 };

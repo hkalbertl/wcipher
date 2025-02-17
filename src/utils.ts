@@ -44,10 +44,11 @@ export async function encryptData(key: CryptoKey, salt: Uint8Array, plainText: U
   );
 
   // Combine IV and encrypted data
-  const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
+  const headerSize = salt.length + iv.length;
+  const combined = new Uint8Array(headerSize + encrypted.byteLength);
   combined.set(salt, 0);
   combined.set(iv, salt.length);
-  combined.set(new Uint8Array(encrypted), salt.length + iv.length);
+  combined.set(new Uint8Array(encrypted), headerSize);
   return combined;
 }
 
